@@ -8,7 +8,7 @@ const Shop = (props) => {
   const { products, addToCart } = props;
   return (
     <div>
-      <h3 style={{ textAlign: "center" }}>SmartPhone Shop</h3>
+      <h3>SmartPhone Shop</h3>
       {
           products.map(pd=> <Product
           product={pd}

@@ -1,11 +1,35 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+import { removeFromCart } from "../../Redux/Action/CartAction";
 
-const Cart = () => {
-    return (
-        <div>
-         <h4>This is Cart</h4>   
-        </div>
-    );
+const Cart = (props) => {
+  const { cart, removeFromCart } = props;
+  return (
+    <div
+      style={{
+        textAlign: "right",
+        marginRight: "150px",
+        height: "20%",
+        width: "70%",
+      }}
+    >
+      <h4>Quantity of Cart</h4>
+      <ul>
+        {cart.map((id) => (
+          <li>
+            {id} <button onClick={() => removeFromCart(id)}>remove</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
-
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+const mapDispatchToProps = {
+  removeFromCart: removeFromCart,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
