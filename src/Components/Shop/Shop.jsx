@@ -1,23 +1,33 @@
-import React from 'react';
-import Product from '../Product/Product';
+import React from "react";
+import { connect } from "react-redux";
+import { addToCart } from "../../Redux/Action/CartAction";
+import Product from "../Product/Product";
 
-const Shop = () => {
-    const products=[
-        {name:'samsung', id:1},
-        {name:'samsung-s10', id:2},
-        {name:'Iphone-X', id:3},
-        {name:'RealMe-7', id:4},
-        {name:'Infinix hot9', id:5},
-        {name:'OnePlus7', id:6},
-        {name:'Nokia N-70', id:7},
-        {name:'Walton Primo9', id:8},
-    ]
-    return (
-        <div>
-            <h3 style={{textAlign:'center'}}>SmartPhone Shop</h3>
-           {products.map(pd=> <Product Product={pd}></Product>)}
-        </div>
-    );
+const Shop = (props) => {
+  console.log(props);
+  const { products, addToCart } = props;
+  return (
+    <div>
+      <h3 style={{ textAlign: "center" }}>SmartPhone Shop</h3>
+      {
+          products.map(pd=> <Product
+          product={pd}
+          key={pd.id}
+          addToCart={addToCart}
+          
+          ></Product>)
+      }
+    </div>
+  );
+};
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+    products: state.products, 
+  };
+};
+const mapDispatchToProps = {
+  addToCart: addToCart,
 };
 
-export default Shop;
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);
