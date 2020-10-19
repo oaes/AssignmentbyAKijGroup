@@ -15,9 +15,9 @@ const Cart = (props) => {
     >
       <h4>Quantity of Cart</h4>
       <ul>
-        {cart.map((id) => (
-          <li>
-            {id} <button onClick={() => removeFromCart(id)}>remove</button>
+        {cart.map((pd) => (
+          <li key={pd.cartId}>
+            {pd.name} <button onClick={() => removeFromCart(pd.cartId)}>remove</button>
           </li>
         ))}
       </ul>
